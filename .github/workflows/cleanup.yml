@@ -1,7 +1,7 @@
 name: Clean Up Deployments
 
 on:
-  
+
   workflow_dispatch:
 
 jobs:
