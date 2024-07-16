@@ -20,20 +20,20 @@ concurrency:
    cancel-in-progress: true
 
 jobs:
-  cleanup:
-    runs-on: ubuntu-latest
-    permissions: write-all
+   cleanupenv:
+      runs-on: ubuntu-latest
+      permissions: write-all
 
-    steps:
-      - name: Delete deployment
-        uses: strumwolf/delete-deployment-environment@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          environment: github-pages
-          onlyRemoveDeployments: true
+      steps:
+        -  name: Delete deployment
+           uses: strumwolf/delete-deployment-environment@v2
+           with:
+             token: ${{ secrets.GITHUB_TOKEN }}
+             environment: github-pages
+             onlyRemoveDeployments: true
 
    deploy:
-      needs: cleanup
+      needs: cleanupenv
       environment:
          name: github-pages
          url: ${{ steps.deployment.outputs.page_url }}
